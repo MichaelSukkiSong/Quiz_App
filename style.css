@@ -68,7 +68,13 @@ body {
   background-color: rgb(108, 108, 214);
   color: antiquewhite;
   border-radius: 1px 1px 7px 7px;
-  font-size: 15px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.confirm-btn:hover {
+  background-color: rgb(65, 65, 167);
 }
 
 /* score */
