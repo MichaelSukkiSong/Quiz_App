@@ -49,7 +49,7 @@ const displayOptions = (options) => {
       <label for="option_${i}">${options[i]}</label>
     </div>
     `;
-    markup_sum = markup_sum + markup;
+    markup_sum += markup;
   }
   elements.options.insertAdjacentHTML("beforeend", markup_sum);
 }
@@ -68,14 +68,29 @@ const compareAnswerAndUpdateScore = (questionAnswer, userAnswer) => {
 
 const nextQuestion = () => {
   clearQuestion();
-  activeQuestion += 1;  
-  displayQuestion(activeQuestion);
-  displayOptions(questions[activeQuestion].options);
+  activeQuestion += 1;
+  checkActiveQuestion();
+  if (activeQuestion !==questions.length) {
+    displayQuestion(activeQuestion);
+    displayOptions(questions[activeQuestion].options);
+  }
+}
+
+const checkActiveQuestion = () => {
+  if (activeQuestion === questions.length) displayScore(score);
+}
+
+const displayScore = (sc) => {
+  const markup = `
+    <div>${sc}</div>
+  `;
+  elements.options.insertAdjacentHTML("beforeend", markup);
 }
 
 const init = () => {
   activeQuestion = 0;
   answeringQuestions = true;
+  score = 0;
   displayQuestion(0);
   displayOptions(questions[0].options);
 }
@@ -87,7 +102,7 @@ elements.form.addEventListener("submit", e => {
     e.preventDefault();
     var data = new FormData(elements.form);
     const myChoice = Number(data.getAll('answer')[0].slice(-1))
-    console.log(myChoice)
+    // console.log(myChoice)
     if (myChoice+1) { // +1 make 0 not a falsy value
       compareAnswerAndUpdateScore(questions[activeQuestion].answer, myChoice);
       nextQuestion();
