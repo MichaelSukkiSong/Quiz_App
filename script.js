@@ -82,7 +82,7 @@ const checkActiveQuestion = () => {
 
 const displayScore = (sc) => {
   const markup = `
-    <div>${sc}</div>
+    <div class="score">Your score is : ${sc} points!</div>
   `;
   elements.options.insertAdjacentHTML("beforeend", markup);
 }

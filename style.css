@@ -69,3 +69,10 @@ body {
   border-radius: 1px 1px 7px 7px;
   font-size: 15px;
 }
+
+/* score */
+.score {
+  font-size: 30px;
+  text-align: center;
+  line-height: 75%;
+}
