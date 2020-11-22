@@ -88,7 +88,7 @@ elements.form.addEventListener("submit", e => {
     var data = new FormData(elements.form);
     const myChoice = Number(data.getAll('answer')[0].slice(-1))
     console.log(myChoice)
-    if (myChoice) {
+    if (myChoice+1) { // +1 make 0 not a falsy value
       compareAnswerAndUpdateScore(questions[activeQuestion].answer, myChoice);
       nextQuestion();
     }
