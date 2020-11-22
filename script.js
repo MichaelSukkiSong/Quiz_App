@@ -54,6 +54,11 @@ const displayOptions = (options) => {
   elements.options.insertAdjacentHTML("beforeend", markup_sum);
 }
 
+const clearQuestion = () => {
+  elements.question.textContent = '';
+  elements.options.textContent = '';
+}
+
 const compareAnswerAndUpdateScore = (questionAnswer, userAnswer) => {
   if (questionAnswer === userAnswer) {
     score++;
@@ -62,6 +67,7 @@ const compareAnswerAndUpdateScore = (questionAnswer, userAnswer) => {
 }
 
 const nextQuestion = () => {
+  clearQuestion();
   activeQuestion += 1;  
   displayQuestion(activeQuestion);
   displayOptions(questions[activeQuestion].options);
@@ -91,5 +97,3 @@ elements.form.addEventListener("submit", e => {
 )
 
 init();
-
-// TODO: clear question function
